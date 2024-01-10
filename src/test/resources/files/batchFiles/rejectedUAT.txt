@@ -1,0 +1,1 @@
+"COLLECTIONS","NCI-2016-01375",,,,,,,,,"PATIENTS","NCI-2016-01375","AZ0001","33789","US","200101","Female","Not Hispanic or Latino",,"20230911",,"297752576",,,,,,,,,,"V20.",,"PATIENT_RACES","NCI-2016-01375","AZ0001","Asian"

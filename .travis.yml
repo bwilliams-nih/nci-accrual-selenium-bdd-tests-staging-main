@@ -1,0 +1,14 @@
+dist: focal
+language: java
+jdk:
+  - openjdk17
+
+cache:
+  directories:
+    - $HOME/.m2
+script:
+  - if [[ "$TRIGGER_TYPE" == "DAILY_CRITICAL" ]]; then mvn test -Dcucumber.filter.tags="@critical"; fi
+  - if [[ "$TRIGGER_TYPE" == "MERGE_TO_MAIN" ]] ; then mvn test -Dcucumber.filter.tags="@critical"; fi
+  - if [[ "$TRIGGER_TYPE" == "MERGE_TO_DEPENDENCY" ]]; then mvn test -Dcucumber.filter.tags= "@critical and @targeted_regression"; fi
+  - if [[ "$TRIGGER_TYPE" == "UAT_PROMOTION_PREP" ]]; then mvn test -Dcucumber.filter.tags= "@regression"; fi
+  - if [[ "$TRAVIS_EVENT_TYPE" == "push" || "$TRAVIS_EVENT_TYPE" == "pull_request" ]] ; then mvn test -Dcucumber.filter.tags="@batch_upload"; fi
